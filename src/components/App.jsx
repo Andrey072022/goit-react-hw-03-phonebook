@@ -26,13 +26,13 @@ class App extends Component {
     }
   };
 
-  componentDidUpdate = (prevProps, prevState) => {
+  componentDidUpdate = prevState => {
     if (this.state.contacts !== prevState.contacts) {
       localStorage.setItem(phoneBookLS, JSON.stringify(this.state.contacts));
     }
   };
 
-  AddContact = ({ name, number }) => {
+  addContact = ({ name, number }) => {
     const normoliseName = name.toLowerCase();
     const contactFind = this.state.contacts.find(
       contact =>
@@ -71,7 +71,7 @@ class App extends Component {
     return (
       <div className={styles.contacts}>
         <h1>Phone book</h1>
-        <ContactForm onSubmit={this.AddContact}></ContactForm>
+        <ContactForm onSubmit={this.addContact}></ContactForm>
         <h2>Contacts</h2>
         <Filter value={filter} onChange={this.changeFilter}></Filter>
         {contacts.length > 0 && (
